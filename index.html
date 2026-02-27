@@ -374,53 +374,6 @@
       cursor: pointer;
     }
 
-    /* ── Load Track ── */
-    .load-section {
-      width: 100%;
-      max-width: 440px;
-      margin: 1.25rem auto 0;
-    }
-
-    .load-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.85rem 1.5rem;
-      background: transparent;
-      border: 1px dashed rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      color: var(--text-secondary);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .load-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(212, 160, 83, 0.04);
-    }
-
-    .load-btn svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .load-btn.has-track {
-      border-style: solid;
-      border-color: rgba(212, 160, 83, 0.2);
-      color: var(--text-secondary);
-    }
-
-    #file-input {
-      display: none;
-    }
-
     /* ── Social Links ── */
     .social-section {
       width: 100%;
@@ -554,7 +507,7 @@
       <div class="player-card">
 
         <div class="track-info">
-          <div class="track-title" id="track-title">No Track Loaded</div>
+          <div class="track-title" id="track-title">Bo Dean</div>
           <div class="track-artist">Bo Dean</div>
         </div>
 
@@ -606,19 +559,6 @@
       </div>
     </section>
 
-    <!-- Load Track -->
-    <section class="load-section fade-in">
-      <button class="load-btn" id="load-btn" onclick="document.getElementById('file-input').click()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="17 8 12 3 7 8"/>
-          <line x1="12" y1="3" x2="12" y2="15"/>
-        </svg>
-        Load a track from your device
-      </button>
-      <input type="file" id="file-input" accept="audio/*">
-    </section>
-
     <!-- Socials -->
     <nav class="social-section fade-in">
       <!-- Instagram -->
@@ -663,7 +603,7 @@
   </div>
 
   <!-- Audio Element -->
-  <audio id="audio" preload="auto"></audio>
+  <audio id="audio" preload="auto" src="assets/track.mp3"></audio>
 
   <script>
     (function() {
@@ -678,37 +618,7 @@
       const timeCurrent = document.getElementById('time-current');
       const timeDuration = document.getElementById('time-duration');
       const volumeSlider = document.getElementById('volume-slider');
-      const trackTitle = document.getElementById('track-title');
-      const fileInput = document.getElementById('file-input');
-      const loadBtn = document.getElementById('load-btn');
       const artwork = document.getElementById('artwork');
-
-      let trackLoaded = false;
-
-      // Check for bundled track
-      function tryLoadBundledTrack() {
-        const extensions = ['mp3', 'wav', 'ogg', 'aac', 'm4a', 'flac', 'webm'];
-        // Try loading from assets/track.* by testing each extension
-        let tried = 0;
-        extensions.forEach(function(ext) {
-          const testAudio = new Audio();
-          testAudio.addEventListener('canplaythrough', function() {
-            if (!trackLoaded) {
-              audio.src = 'assets/track.' + ext;
-              trackLoaded = true;
-              trackTitle.textContent = 'Bo Dean';
-              loadBtn.classList.add('has-track');
-              loadBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Track loaded — or load a different one';
-            }
-          });
-          testAudio.addEventListener('error', function() {
-            tried++;
-          });
-          testAudio.src = 'assets/track.' + ext;
-        });
-      }
-
-      tryLoadBundledTrack();
 
       // Format time mm:ss
       function formatTime(seconds) {
@@ -726,10 +636,6 @@
 
       // Play / Pause
       btnPlay.addEventListener('click', function() {
-        if (!trackLoaded) {
-          fileInput.click();
-          return;
-        }
         if (audio.paused) {
           audio.play();
         } else {
@@ -770,7 +676,6 @@
 
       // Seek
       progressBar.addEventListener('click', function(e) {
-        if (!trackLoaded) return;
         var rect = this.getBoundingClientRect();
         var pct = (e.clientX - rect.left) / rect.width;
         audio.currentTime = pct * audio.duration;
@@ -781,7 +686,6 @@
       progressBar.addEventListener('touchmove', handleTouch, { passive: true });
 
       function handleTouch(e) {
-        if (!trackLoaded) return;
         var touch = e.touches[0];
         var rect = progressBar.getBoundingClientRect();
         var pct = Math.max(0, Math.min(1, (touch.clientX - rect.left) / rect.width));
@@ -795,28 +699,6 @@
 
       btnForward.addEventListener('click', function() {
         audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
-      });
-
-      // File picker
-      fileInput.addEventListener('change', function(e) {
-        var file = e.target.files[0];
-        if (!file) return;
-
-        var url = URL.createObjectURL(file);
-        audio.src = url;
-        trackLoaded = true;
-
-        // Clean up filename for display
-        var name = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
-        // Title-case
-        name = name.replace(/\b\w/g, function(c) { return c.toUpperCase(); });
-        trackTitle.textContent = name;
-
-        loadBtn.classList.add('has-track');
-        loadBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ' + file.name;
-
-        // Auto-play on load
-        audio.play();
       });
 
       // Keyboard controls
