@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bo Dean — Official</title>
-  <meta name="description" content="Bo Dean — Listen now.">
+  <title>Bo Dean — STL Made</title>
+  <meta name="description" content="Bo Dean — STL Made. Listen now.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -18,13 +18,16 @@
     :root {
       --bg-primary: #0a0a0f;
       --bg-secondary: #12121a;
-      --bg-card: #1a1a25;
-      --accent: #d4a053;
-      --accent-glow: rgba(212, 160, 83, 0.3);
+      --bg-card: rgba(12, 12, 18, 0.85);
+      --cardinals-red: #C41E3A;
+      --cardinals-red-glow: rgba(196, 30, 58, 0.35);
+      --cardinals-navy: #0C2340;
+      --accent: #C41E3A;
+      --accent-glow: rgba(196, 30, 58, 0.3);
       --text-primary: #f0ece4;
       --text-secondary: #8a8694;
       --text-muted: #5a5666;
-      --border: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
     }
 
     html {
@@ -40,153 +43,185 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Ambient Background ── */
-    .ambient-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .ambient-bg::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      left: -20%;
-      width: 70%;
-      height: 70%;
-      background: radial-gradient(ellipse, rgba(212, 160, 83, 0.06) 0%, transparent 70%);
-      animation: drift 20s ease-in-out infinite;
-    }
-
-    .ambient-bg::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      right: -20%;
-      width: 60%;
-      height: 60%;
-      background: radial-gradient(ellipse, rgba(90, 60, 140, 0.05) 0%, transparent 70%);
-      animation: drift 25s ease-in-out infinite reverse;
-    }
-
-    @keyframes drift {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(40px, 20px); }
-    }
-
-    /* ── Layout ── */
-    .page-wrapper {
+    /* ── Hero Section ── */
+    .hero {
       position: relative;
-      z-index: 1;
+      width: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding: 2rem 1.25rem 4rem;
+      justify-content: flex-start;
+      overflow: hidden;
     }
 
-    /* ── Header ── */
-    .site-header {
-      width: 100%;
-      max-width: 600px;
+    /* Background glow behind art */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, var(--cardinals-red-glow) 0%, rgba(196, 30, 58, 0.08) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── STL Badge ── */
+    .stl-badge {
+      position: relative;
+      z-index: 2;
+      margin-top: clamp(1.5rem, 4vw, 3rem);
       text-align: center;
-      padding: 1.5rem 0 1rem;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeIn 0.5s ease 0.1s forwards;
+    }
+
+    .stl-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--cardinals-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .stl-text::before,
+    .stl-text::after {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--cardinals-red);
+      opacity: 0.5;
+    }
+
+    /* ── Artist Name ── */
+    .artist-header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: 0.5rem;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeIn 0.5s ease 0.2s forwards;
     }
 
     .artist-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 10vw, 5.5rem);
-      letter-spacing: 0.15em;
-      line-height: 1;
+      font-size: clamp(3.5rem, 14vw, 7rem);
+      letter-spacing: 0.12em;
+      line-height: 0.9;
       color: var(--text-primary);
       text-transform: uppercase;
-      position: relative;
-      display: inline-block;
     }
 
-    .artist-name::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--accent);
-      margin: 0.75rem auto 0;
-    }
-
-    .tagline {
-      font-size: 0.8rem;
+    .artist-subtitle {
+      font-size: 0.75rem;
       font-weight: 300;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--text-secondary);
-      margin-top: 0.75rem;
+      margin-top: 0.5rem;
     }
 
-    /* ── Album Art ── */
-    .artwork-section {
-      width: 100%;
-      max-width: 440px;
-      margin: 2rem auto;
+    /* ── Hero Album Art (THE CENTERPIECE) ── */
+    .hero-artwork {
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 520px;
+      margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
+      opacity: 0;
+      transform: scale(0.95);
+      animation: artReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     }
 
-    .artwork-container {
+    .artwork-frame {
       position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
       box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 0 80px rgba(212, 160, 83, 0.05);
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 0 120px var(--cardinals-red-glow);
+      transition: box-shadow 0.4s ease;
     }
 
-    .artwork-container img {
+    .artwork-frame.is-playing {
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 0 160px var(--cardinals-red-glow),
+        0 0 60px rgba(196, 30, 58, 0.15);
+    }
+
+    .artwork-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .artwork-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(145deg, #1a1525 0%, #0d0b14 50%, #1a1520 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .artwork-placeholder svg {
-      width: 64px;
-      height: 64px;
-      opacity: 0.3;
-    }
-
-    .artwork-placeholder span {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-    }
-
-    /* Vinyl spin animation when playing */
-    .artwork-container.is-playing img {
+    .artwork-frame.is-playing img {
       animation: pulse-glow 3s ease-in-out infinite;
     }
 
     @keyframes pulse-glow {
       0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.05); }
+      50% { filter: brightness(1.06); }
     }
 
-    /* ── Audio Player ── */
+    @keyframes artReveal {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* ── 314 Watermark ── */
+    .watermark-314 {
+      position: absolute;
+      bottom: -5%;
+      right: -3%;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(8rem, 25vw, 14rem);
+      color: rgba(196, 30, 58, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 0;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Player (overlaid at bottom of hero) ── */
     .player-section {
-      width: 100%;
-      max-width: 440px;
-      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+      width: 90%;
+      max-width: 520px;
+      margin: clamp(1.5rem, 3vw, 2rem) auto 0;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 0.6s ease 0.5s forwards;
     }
 
     .player-card {
@@ -194,7 +229,8 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 1.5rem;
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
     }
 
     .track-info {
@@ -237,7 +273,7 @@
 
     .progress-bar-fill {
       height: 100%;
-      background: var(--accent);
+      background: var(--cardinals-red);
       border-radius: 2px;
       width: 0%;
       position: relative;
@@ -252,7 +288,7 @@
       transform: translateY(-50%) scale(0);
       width: 10px;
       height: 10px;
-      background: var(--accent);
+      background: var(--cardinals-red);
       border-radius: 50%;
       transition: transform 0.15s ease;
     }
@@ -303,16 +339,16 @@
     .btn-play {
       width: 56px;
       height: 56px;
-      background: var(--accent);
-      color: var(--bg-primary);
+      background: var(--cardinals-red);
+      color: #fff;
       border-radius: 50%;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 20px var(--accent-glow);
+      box-shadow: 0 4px 20px var(--cardinals-red-glow);
     }
 
     .btn-play:hover {
       transform: scale(1.06);
-      box-shadow: 0 6px 30px var(--accent-glow);
+      box-shadow: 0 6px 30px var(--cardinals-red-glow);
     }
 
     .btn-play:active {
@@ -376,12 +412,17 @@
 
     /* ── Social Links ── */
     .social-section {
-      width: 100%;
-      max-width: 440px;
-      margin: 2.5rem auto 0;
+      position: relative;
+      z-index: 3;
+      width: 90%;
+      max-width: 520px;
+      margin: 2rem auto 0;
       display: flex;
       justify-content: center;
       gap: 1rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 0.6s ease 0.6s forwards;
     }
 
     .social-link {
@@ -398,8 +439,8 @@
     }
 
     .social-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--cardinals-red);
+      color: var(--cardinals-red);
       transform: translateY(-2px);
     }
 
@@ -408,43 +449,60 @@
       height: 18px;
     }
 
-    /* ── Footer ── */
-    .site-footer {
-      width: 100%;
-      max-width: 440px;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
+    /* ── STL Footer Stripe ── */
+    .stl-footer {
+      position: relative;
+      z-index: 3;
+      width: 90%;
+      max-width: 520px;
+      margin: 2.5rem auto 0;
+      padding: 1.5rem 0;
       border-top: 1px solid var(--border);
       text-align: center;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 0.6s ease 0.7s forwards;
     }
 
-    .site-footer p {
-      font-size: 0.7rem;
+    .stl-footer-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.35em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .stl-footer-text .red {
+      color: var(--cardinals-red);
+    }
+
+    .stl-footer p {
+      font-size: 0.65rem;
       color: var(--text-muted);
       letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+
+    .bottom-spacer {
+      height: 3rem;
     }
 
     /* ── Responsive ── */
     @media (min-width: 768px) {
-      .page-wrapper {
-        padding: 3rem 2rem 5rem;
-        justify-content: center;
+      .hero-artwork {
+        max-width: 560px;
+      }
+
+      .artwork-frame {
+        border-radius: 20px;
       }
 
       .player-card {
         padding: 2rem;
       }
-
-      .artwork-container {
-        border-radius: 16px;
-      }
     }
 
     @media (max-width: 360px) {
-      .page-wrapper {
-        padding: 1.5rem 1rem 3rem;
-      }
-
       .player-card {
         padding: 1.25rem;
       }
@@ -460,17 +518,6 @@
     }
 
     /* ── Animations ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeIn 0.6s ease forwards;
-    }
-
-    .fade-in:nth-child(2) { animation-delay: 0.1s; }
-    .fade-in:nth-child(3) { animation-delay: 0.2s; }
-    .fade-in:nth-child(4) { animation-delay: 0.3s; }
-    .fade-in:nth-child(5) { animation-delay: 0.4s; }
-
     @keyframes fadeIn {
       to {
         opacity: 1;
@@ -481,29 +528,35 @@
 </head>
 <body>
 
-  <div class="ambient-bg"></div>
+  <div class="hero">
 
-  <div class="page-wrapper">
+    <!-- 314 Watermark -->
+    <div class="watermark-314">314</div>
 
-    <!-- Header -->
-    <header class="site-header fade-in">
+    <!-- STL Badge -->
+    <div class="stl-badge">
+      <div class="stl-text">STL Made</div>
+    </div>
+
+    <!-- Artist Name -->
+    <header class="artist-header">
       <h1 class="artist-name">Bo Dean</h1>
-      <p class="tagline">New Music Out Now</p>
+      <p class="artist-subtitle">Saint Louis, Missouri</p>
     </header>
 
-    <!-- Album Art -->
-    <section class="artwork-section fade-in">
-      <div class="artwork-container" id="artwork">
+    <!-- HERO ALBUM ART -->
+    <section class="hero-artwork">
+      <div class="artwork-frame" id="artwork">
         <img
           src="assets/cover.png"
           alt="Bo Dean — Album Cover"
-          onerror="this.parentElement.innerHTML='<div class=\'artwork-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><circle cx=\'12\' cy=\'12\' r=\'3\'/><line x1=\'12\' y1=\'2\' x2=\'12\' y2=\'5\'/></svg><span>Add cover.jpg to /assets</span></div>'"
+          onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(145deg,#1a1525,#0d0b14);display:flex;align-items:center;justify-content:center;color:#5a5666;font-size:0.8rem;letter-spacing:0.1em\'>Cover art loading...</div>'"
         >
       </div>
     </section>
 
     <!-- Player -->
-    <section class="player-section fade-in">
+    <section class="player-section">
       <div class="player-card">
 
         <div class="track-info">
@@ -560,7 +613,7 @@
     </section>
 
     <!-- Socials -->
-    <nav class="social-section fade-in">
+    <nav class="social-section">
       <!-- Instagram -->
       <a href="#" class="social-link" title="Instagram" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -596,9 +649,12 @@
     </nav>
 
     <!-- Footer -->
-    <footer class="site-footer fade-in">
+    <footer class="stl-footer">
+      <div class="stl-footer-text"><span class="red">314</span> &mdash; Saint Louis Made</div>
       <p>&copy; 2026 Bo Dean. All rights reserved.</p>
     </footer>
+
+    <div class="bottom-spacer"></div>
 
   </div>
 
@@ -620,7 +676,6 @@
       const volumeSlider = document.getElementById('volume-slider');
       const artwork = document.getElementById('artwork');
 
-      // Format time mm:ss
       function formatTime(seconds) {
         if (isNaN(seconds) || !isFinite(seconds)) return '0:00';
         var mins = Math.floor(seconds / 60);
@@ -628,13 +683,11 @@
         return mins + ':' + (secs < 10 ? '0' : '') + secs;
       }
 
-      // Volume
       audio.volume = 0.8;
       volumeSlider.addEventListener('input', function() {
         audio.volume = this.value;
       });
 
-      // Play / Pause
       btnPlay.addEventListener('click', function() {
         if (audio.paused) {
           audio.play();
@@ -655,7 +708,6 @@
         artwork.classList.remove('is-playing');
       });
 
-      // Time update
       audio.addEventListener('timeupdate', function() {
         var pct = (audio.currentTime / audio.duration) * 100;
         progressFill.style.width = pct + '%';
@@ -674,14 +726,12 @@
         artwork.classList.remove('is-playing');
       });
 
-      // Seek
       progressBar.addEventListener('click', function(e) {
         var rect = this.getBoundingClientRect();
         var pct = (e.clientX - rect.left) / rect.width;
         audio.currentTime = pct * audio.duration;
       });
 
-      // Touch seek for mobile
       progressBar.addEventListener('touchstart', handleTouch, { passive: true });
       progressBar.addEventListener('touchmove', handleTouch, { passive: true });
 
@@ -692,7 +742,6 @@
         audio.currentTime = pct * audio.duration;
       }
 
-      // Rewind / Forward
       btnRewind.addEventListener('click', function() {
         audio.currentTime = Math.max(0, audio.currentTime - 10);
       });
@@ -701,7 +750,6 @@
         audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
       });
 
-      // Keyboard controls
       document.addEventListener('keydown', function(e) {
         if (e.target.tagName === 'INPUT') return;
         switch(e.code) {
