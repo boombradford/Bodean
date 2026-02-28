@@ -1,0 +1,46 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: rgba(12, 12, 18, 0.85);
+  --cardinals-red: #C41E3A;
+  --cardinals-red-glow: rgba(196, 30, 58, 0.35);
+  --cardinals-navy: #0C2340;
+  --accent: #C41E3A;
+  --accent-glow: rgba(196, 30, 58, 0.3);
+  --text-primary: #f0ece4;
+  --text-secondary: #8a8694;
+  --text-muted: #5a5666;
+  --border: rgba(255, 255, 255, 0.08);
+  --player-padding: 1.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --player-padding: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --player-padding: 1.25rem;
+  }
+}
