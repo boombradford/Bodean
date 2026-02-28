@@ -51,14 +51,6 @@
   letter-spacing: 0.05em;
 }
 
-.cardinalHero {
-  position: relative;
-  z-index: 2;
-  margin-top: 0.75rem;
-  display: flex;
-  justify-content: center;
-}
-
 .bottomSpacer {
   height: 3rem;
 }

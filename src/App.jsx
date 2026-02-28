@@ -5,7 +5,7 @@ import { HeroArtwork } from './components/HeroArtwork'
 import { MusicPlayer } from './components/MusicPlayer'
 import { SocialLinks } from './components/SocialLinks'
 import { Footer } from './components/Footer'
-import { StlBackground, CardinalBird } from './components/StlElements'
+import { StlBackground } from './components/StlElements'
 import styles from './App.module.css'
 
 function App() {
@@ -42,16 +42,6 @@ function App() {
 
         <StlBadge />
         <ArtistHeader />
-
-        <motion.div
-          className={styles.cardinalHero}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <CardinalBird size={160} />
-        </motion.div>
-
         <HeroArtwork isPlaying={isPlaying} />
         <MusicPlayer
           isPlaying={isPlaying}
