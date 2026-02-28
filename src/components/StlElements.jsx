@@ -84,46 +84,114 @@ export function FleurDeLis({ size = 48, color = 'currentColor', ...props }) {
   )
 }
 
-/* ── Cardinal Bird ── more anatomically detailed with crest, wing, tail ── */
-export function CardinalBird({ size = 48, color = 'currentColor', ...props }) {
+/* ── Cardinal Bird on Bat ── classic Cardinals logo style ── */
+export function CardinalBird({ size = 48, color = '#C41E3A', ...props }) {
+  const scale = size / 200
   return (
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" {...props}>
+    <svg width={200 * scale} height={140 * scale} viewBox="0 0 200 140" fill="none" {...props}>
+      {/* Baseball bat — diagonal, barrel right, handle left */}
+      <defs>
+        <linearGradient id="batGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#C4973B" />
+          <stop offset="40%" stopColor="#E8C95A" />
+          <stop offset="60%" stopColor="#F5DC6E" />
+          <stop offset="100%" stopColor="#C4973B" />
+        </linearGradient>
+      </defs>
+      {/* Bat handle + knob */}
+      <path
+        d="M18 108L22 104L80 68L82 70L24 108Z"
+        fill="#C4973B"
+      />
+      <circle cx="16" cy="110" r="4" fill="#A07830" />
+      {/* Bat barrel */}
+      <path
+        d="M80 68L82 70L184 18L188 12L186 10L82 64Z"
+        fill="url(#batGrad)"
+      />
+      {/* Bat barrel end cap */}
+      <ellipse cx="187" cy="14" rx="3" ry="6" fill="#C4973B" transform="rotate(-30 187 14)" />
+
+      {/* ── Cardinal bird, perched on bat, facing left ── */}
       {/* Body */}
       <path
-        d="M50 80C36 78 24 66 24 50C24 38 30 28 40 23C38 20 37 16 38 12L42 14C41 11 42 7 44 5L48 14C49 10 50 6 52 5L56 14C57 7 59 11 58 14L62 12C63 16 62 20 60 23C70 28 76 38 76 50C76 66 64 78 50 80Z"
-        stroke={color}
-        strokeWidth="1.8"
+        d="M110 58C110 48 104 40 96 36C92 34 86 34 82 36C76 40 72 48 72 58C72 68 78 74 86 78C90 80 96 80 100 78C106 74 110 68 110 58Z"
         fill={color}
-        fillOpacity="0.08"
       />
-      {/* Crest feathers */}
-      <path d="M44 5C44 5 48 2 50 2C52 2 56 5 56 5" stroke={color} strokeWidth="1" opacity="0.5" />
-      <path d="M46 8C46 8 49 4 50 4C51 4 54 8 54 8" stroke={color} strokeWidth="0.8" opacity="0.4" />
-      {/* Eye ring + eye */}
-      <circle cx="42" cy="36" r="5" stroke={color} strokeWidth="1" opacity="0.4" />
-      <circle cx="42" cy="36" r="2.5" fill={color} />
-      <circle cx="41.5" cy="35.5" r="0.8" fill="#fff" />
-      {/* Beak */}
-      <path d="M34 42L24 46L34 44Z" fill={color} opacity="0.7" />
-      <path d="M34 44L24 46L34 46Z" fill={color} opacity="0.4" />
-      {/* Face mask */}
-      <path d="M36 38C36 42 34 44 34 44L38 48C42 46 44 42 44 38" stroke={color} strokeWidth="0.8" opacity="0.4" />
-      {/* Wing detail */}
+      {/* Head */}
+      <circle cx="78" cy="40" r="14" fill={color} />
+      {/* Crest — tall pointed feathers */}
+      <path d="M78 26L74 14L80 22Z" fill={color} />
+      <path d="M80 24L78 10L84 20Z" fill={color} />
+      <path d="M76 28L70 18L78 24Z" fill={color} />
+      {/* Face mask — black diamond around eye/beak */}
       <path
-        d="M52 40C58 42 66 48 68 55C70 62 68 68 64 72"
-        stroke={color}
-        strokeWidth="1.2"
+        d="M68 36C68 36 72 30 78 32C78 32 82 36 78 42C78 42 72 46 66 42C66 42 64 38 68 36Z"
+        fill="#1a1a2e"
+      />
+      {/* Eye */}
+      <circle cx="74" cy="37" r="2.5" fill="#1a1a2e" />
+      <circle cx="74" cy="37" r="1.2" fill="#fff" />
+      {/* Beak — yellow/orange cone pointing left */}
+      <path d="M64 38L52 42L64 44Z" fill="#E8C95A" />
+      <path d="M64 41L52 42L64 44Z" fill="#C4973B" />
+      {/* Wing — layered feather shapes */}
+      <path
+        d="M90 44C96 48 106 56 110 64C112 68 112 72 110 76"
+        stroke="#a01830"
+        strokeWidth="1.5"
+        fill="none"
+      />
+      <path
+        d="M88 48C94 52 102 58 106 66C108 70 108 74 106 78"
+        stroke="#a01830"
+        strokeWidth="1"
+        fill="none"
+      />
+      <path
+        d="M86 52C92 56 98 62 102 68"
+        stroke="#a01830"
+        strokeWidth="0.8"
+        fill="none"
+      />
+      {/* Tail feathers */}
+      <path d="M104 72C112 78 120 86 126 96" stroke={color} strokeWidth="3" strokeLinecap="round" />
+      <path d="M100 74C106 82 112 90 116 100" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M96 76C100 84 104 92 106 100" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      {/* Chest/belly lighter accent */}
+      <path
+        d="M78 50C80 54 82 62 82 68C82 72 80 76 78 78"
+        stroke="#e8384a"
+        strokeWidth="2"
+        fill="none"
         opacity="0.5"
       />
-      <path d="M54 44C58 46 64 52 65 58" stroke={color} strokeWidth="0.8" opacity="0.3" />
-      <path d="M52 48C56 50 60 54 62 60" stroke={color} strokeWidth="0.8" opacity="0.3" />
-      {/* Tail feathers */}
-      <path d="M56 72C60 80 64 88 66 94" stroke={color} strokeWidth="1.5" opacity="0.5" />
-      <path d="M50 74C52 82 54 90 54 96" stroke={color} strokeWidth="1.5" opacity="0.4" />
-      <path d="M44 72C42 80 38 88 36 94" stroke={color} strokeWidth="1.5" opacity="0.5" />
-      {/* Feet */}
-      <path d="M40 78L38 86L34 88M38 86L40 90" stroke={color} strokeWidth="1" opacity="0.3" />
-      <path d="M56 78L58 86L62 88M58 86L56 90" stroke={color} strokeWidth="1" opacity="0.3" />
+      {/* Feet gripping bat */}
+      <path d="M82 76L80 70L78 72" stroke="#555" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M90 78L88 72L86 74" stroke="#555" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+/* ── STL Interlocking Monogram ── bold block letters ── */
+export function StlMonogram({ size = 48, color = '#C41E3A', ...props }) {
+  return (
+    <svg width={size} height={size * 0.55} viewBox="0 0 120 66" fill="none" {...props}>
+      {/* S */}
+      <path
+        d="M8 22C8 14 14 8 24 8C34 8 38 14 38 20C38 28 30 30 24 32C18 34 12 36 12 42C12 48 18 54 28 54C36 54 40 50 40 50"
+        stroke={color}
+        strokeWidth="8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      {/* T */}
+      <line x1="42" y1="12" x2="78" y2="12" stroke={color} strokeWidth="8" strokeLinecap="round" />
+      <line x1="60" y1="12" x2="60" y2="54" stroke={color} strokeWidth="8" strokeLinecap="round" />
+      {/* L */}
+      <line x1="82" y1="8" x2="82" y2="54" stroke={color} strokeWidth="8" strokeLinecap="round" />
+      <line x1="82" y1="54" x2="112" y2="54" stroke={color} strokeWidth="8" strokeLinecap="round" />
     </svg>
   )
 }
@@ -327,7 +395,7 @@ const stlElements = [
   { Component: GatewayArch, position: { top: '6%', left: '3%' }, size: 52, opacity: 0.15 },
   { Component: FleurDeLis, position: { top: '12%', right: '4%' }, size: 40, opacity: 0.12 },
   { Component: BluesNote, position: { top: '40%', left: '1%' }, size: 44, opacity: 0.13 },
-  { Component: CardinalBird, position: { top: '50%', right: '2%' }, size: 46, opacity: 0.14 },
+  { Component: StlMonogram, position: { top: '50%', right: '2%' }, size: 46, opacity: 0.12 },
   { Component: UnionStation, position: { top: '28%', left: '4%' }, size: 38, opacity: 0.1 },
   { Component: StlSkyline, position: { bottom: '20%', left: '3%' }, size: 72, opacity: 0.1 },
   { Component: BuschStadium, position: { bottom: '30%', right: '3%' }, size: 64, opacity: 0.1 },

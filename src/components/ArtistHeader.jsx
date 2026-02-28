@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { StlMonogram } from './StlElements'
 import styles from './ArtistHeader.module.css'
 
 export function StlBadge() {
@@ -9,6 +10,7 @@ export function StlBadge() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
     >
+      <StlMonogram size={80} />
       <div className={styles.badgeText}>
         <motion.span
           className={styles.badgeLine}
@@ -16,7 +18,7 @@ export function StlBadge() {
           animate={{ width: 30 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         />
-        STL Made
+        Made
         <motion.span
           className={styles.badgeLine}
           initial={{ width: 0 }}

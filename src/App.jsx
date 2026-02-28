@@ -49,7 +49,7 @@ function App() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <CardinalBird size={72} color="var(--cardinals-red)" />
+          <CardinalBird size={160} />
         </motion.div>
 
         <HeroArtwork isPlaying={isPlaying} />
