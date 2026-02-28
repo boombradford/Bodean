@@ -102,7 +102,7 @@ export function CardinalBird({ size = 48, color = 'currentColor', ...props }) {
       {/* Eye ring + eye */}
       <circle cx="42" cy="36" r="5" stroke={color} strokeWidth="1" opacity="0.4" />
       <circle cx="42" cy="36" r="2.5" fill={color} />
-      <circle cx="41.5" cy="35.5" r="0.8" fill="var(--bg-primary)" />
+      <circle cx="41.5" cy="35.5" r="0.8" fill="#fff" />
       {/* Beak */}
       <path d="M34 42L24 46L34 44Z" fill={color} opacity="0.7" />
       <path d="M34 44L24 46L34 46Z" fill={color} opacity="0.4" />
@@ -324,16 +324,16 @@ const floatVariants = {
 }
 
 const stlElements = [
-  { Component: GatewayArch, position: { top: '6%', left: '3%' }, size: 52, opacity: 0.1 },
-  { Component: FleurDeLis, position: { top: '12%', right: '4%' }, size: 40, opacity: 0.08 },
-  { Component: BluesNote, position: { top: '40%', left: '1%' }, size: 44, opacity: 0.09 },
-  { Component: CardinalBird, position: { top: '50%', right: '2%' }, size: 46, opacity: 0.08 },
-  { Component: UnionStation, position: { top: '28%', left: '4%' }, size: 38, opacity: 0.06 },
-  { Component: StlSkyline, position: { bottom: '20%', left: '3%' }, size: 72, opacity: 0.07 },
-  { Component: BuschStadium, position: { bottom: '30%', right: '3%' }, size: 64, opacity: 0.07 },
-  { Component: DelmarLoop, position: { top: '70%', right: '5%' }, size: 36, opacity: 0.06 },
-  { Component: GatewayArch, position: { bottom: '8%', left: '8%' }, size: 34, opacity: 0.06 },
-  { Component: FleurDeLis, position: { bottom: '5%', right: '7%' }, size: 30, opacity: 0.05 },
+  { Component: GatewayArch, position: { top: '6%', left: '3%' }, size: 52, opacity: 0.15 },
+  { Component: FleurDeLis, position: { top: '12%', right: '4%' }, size: 40, opacity: 0.12 },
+  { Component: BluesNote, position: { top: '40%', left: '1%' }, size: 44, opacity: 0.13 },
+  { Component: CardinalBird, position: { top: '50%', right: '2%' }, size: 46, opacity: 0.14 },
+  { Component: UnionStation, position: { top: '28%', left: '4%' }, size: 38, opacity: 0.1 },
+  { Component: StlSkyline, position: { bottom: '20%', left: '3%' }, size: 72, opacity: 0.1 },
+  { Component: BuschStadium, position: { bottom: '30%', right: '3%' }, size: 64, opacity: 0.1 },
+  { Component: DelmarLoop, position: { top: '70%', right: '5%' }, size: 36, opacity: 0.1 },
+  { Component: GatewayArch, position: { bottom: '8%', left: '8%' }, size: 34, opacity: 0.1 },
+  { Component: FleurDeLis, position: { bottom: '5%', right: '7%' }, size: 30, opacity: 0.08 },
 ]
 
 export function StlBackground() {
