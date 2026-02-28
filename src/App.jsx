@@ -1,11 +1,10 @@
-import { motion } from 'framer-motion'
 import { useAudioPlayer } from './hooks/useAudioPlayer'
-import { StlBadge, ArtistHeader } from './components/ArtistHeader'
+import { CelebrationBadge, Hero314, ArtistHeader } from './components/ArtistHeader'
 import { HeroArtwork } from './components/HeroArtwork'
 import { MusicPlayer } from './components/MusicPlayer'
 import { SocialLinks } from './components/SocialLinks'
 import { Footer } from './components/Footer'
-import { StlBackground } from './components/StlElements'
+import { StlBackground, CityParticles, ArchSilhouette } from './components/StlElements'
 import styles from './App.module.css'
 
 function App() {
@@ -28,21 +27,15 @@ function App() {
       {audioElement}
       <div className={styles.hero}>
         <div className={styles.bgGlow} />
-        <div className={styles.bottomFade} />
+        <div className={styles.bottomGlow} />
+        <div className={styles.grain} />
+        <ArchSilhouette />
         <StlBackground />
+        <CityParticles />
 
-        <motion.div
-          className={styles.watermark}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2, delay: 1 }}
-        >
-          314
-        </motion.div>
-
-        <StlBadge />
+        <CelebrationBadge />
+        <Hero314 />
         <ArtistHeader />
-        <HeroArtwork isPlaying={isPlaying} />
         <MusicPlayer
           isPlaying={isPlaying}
           currentTime={currentTime}
@@ -55,6 +48,7 @@ function App() {
           onVolumeChange={setVolume}
           formatTime={formatTime}
         />
+        <HeroArtwork isPlaying={isPlaying} />
         <SocialLinks />
         <Footer />
 

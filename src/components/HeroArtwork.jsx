@@ -11,9 +11,9 @@ export function HeroArtwork({ isPlaying }) {
   return (
     <motion.section
       className={styles.artworkSection}
-      initial={{ opacity: 0, scale: 0.92 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, scale: 0.88, y: 30 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 16, delay: 1.2 }}
     >
       <motion.div
         className={styles.artworkFrame}
@@ -21,32 +21,29 @@ export function HeroArtwork({ isPlaying }) {
           isPlaying
             ? {
                 boxShadow: [
-                  '0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06), 0 0 80px rgba(196,30,58,0.15), 0 0 30px rgba(196,30,58,0.08)',
-                  '0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06), 0 0 100px rgba(196,30,58,0.22), 0 0 50px rgba(196,30,58,0.12)',
-                  '0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06), 0 0 80px rgba(196,30,58,0.15), 0 0 30px rgba(196,30,58,0.08)',
+                  '0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(196,30,58,0.15), 0 0 30px rgba(196,30,58,0.1)',
+                  '0 20px 60px rgba(0,0,0,0.5), 0 0 120px rgba(196,30,58,0.28), 0 0 60px rgba(196,30,58,0.18)',
+                  '0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(196,30,58,0.15), 0 0 30px rgba(196,30,58,0.1)',
                 ],
               }
             : {
                 boxShadow:
-                  '0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06), 0 0 60px rgba(196,30,58,0.12)',
+                  '0 20px 60px rgba(0,0,0,0.5), 0 0 60px rgba(196,30,58,0.1)',
               }
         }
         transition={
           isPlaying
             ? { duration: 3, repeat: Infinity, ease: 'easeInOut' }
-            : { duration: 0.4 }
+            : { type: 'spring', stiffness: 100, damping: 20 }
         }
         whileHover={{ scale: 1.02 }}
       >
-        {/* Blur placeholder */}
         <img
           src={BLUR_PLACEHOLDER}
           alt=""
           aria-hidden="true"
           className={`${styles.placeholder} ${loaded ? styles.placeholderHidden : ''}`}
         />
-
-        {/* Main image with WebP + PNG fallback */}
         <picture>
           <source srcSet="/cover.webp" type="image/webp" />
           <motion.img

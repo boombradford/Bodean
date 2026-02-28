@@ -42,30 +42,30 @@ export function MusicPlayer({
   return (
     <motion.section
       className={styles.playerSection}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ type: 'spring', stiffness: 120, damping: 18, delay: 1.0 }}
     >
       <motion.div
         className={styles.playerCard}
-        whileHover={{ borderColor: 'rgba(0,0,0,0.15)' }}
+        whileHover={{ borderColor: 'rgba(255,255,255,0.12)' }}
       >
-        {/* Track Info */}
         <div className={styles.trackInfo}>
           <motion.div
             className={styles.trackTitle}
             animate={isPlaying ? { scale: [1, 1.02, 1] } : {}}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           >
             STL Made Ya
           </motion.div>
           <div className={styles.trackArtist}>Bo Dean</div>
+          <div className={styles.trackRelease}>
+            Featured on the upcoming release <em>Memento Vivere</em>
+          </div>
         </div>
 
-        {/* Equalizer Visualizer */}
         <Equalizer isPlaying={isPlaying} />
 
-        {/* Progress Bar */}
         <div className={styles.progressGroup}>
           <div
             ref={progressRef}
@@ -85,14 +85,14 @@ export function MusicPlayer({
           </div>
         </div>
 
-        {/* Controls */}
         <div className={styles.controls}>
           <motion.button
             className={styles.btnControl}
             onClick={onRewind}
             title="Rewind 10s"
             whileHover={{ scale: 1.15, color: 'var(--text-primary)' }}
-            whileTap={{ scale: 0.9, rotate: -20 }}
+            whileTap={{ scale: 0.85, rotate: -15 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 15 }}
           >
             <RotateCcw size={20} />
           </motion.button>
@@ -102,7 +102,8 @@ export function MusicPlayer({
             onClick={onTogglePlay}
             title="Play / Pause"
             whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.92 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 15 }}
           >
             <AnimatePresence mode="wait">
               {isPlaying ? (
@@ -112,7 +113,7 @@ export function MusicPlayer({
                   initial={{ scale: 0, rotate: -90 }}
                   animate={{ scale: 1, rotate: 0 }}
                   exit={{ scale: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 18 }}
                 >
                   <Pause size={24} fill="currentColor" />
                 </motion.div>
@@ -123,7 +124,7 @@ export function MusicPlayer({
                   initial={{ scale: 0, rotate: 90 }}
                   animate={{ scale: 1, rotate: 0 }}
                   exit={{ scale: 0, rotate: -90 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 18 }}
                 >
                   <Play size={24} fill="currentColor" />
                 </motion.div>
@@ -136,13 +137,13 @@ export function MusicPlayer({
             onClick={onForward}
             title="Forward 10s"
             whileHover={{ scale: 1.15, color: 'var(--text-primary)' }}
-            whileTap={{ scale: 0.9, rotate: 20 }}
+            whileTap={{ scale: 0.85, rotate: 15 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 15 }}
           >
             <RotateCw size={20} />
           </motion.button>
         </div>
 
-        {/* Volume */}
         <div className={styles.volumeGroup}>
           <Volume2 size={16} className={styles.volumeIcon} />
           <input

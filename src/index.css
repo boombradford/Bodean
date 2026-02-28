@@ -5,19 +5,29 @@
 }
 
 :root {
-  --bg-primary: #faf8f4;
-  --bg-secondary: #f0ece4;
-  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-primary: #08080f;
+  --bg-secondary: #111118;
+  --bg-card: rgba(255, 255, 255, 0.04);
   --cardinals-red: #C41E3A;
-  --cardinals-red-glow: rgba(196, 30, 58, 0.18);
-  --cardinals-navy: #0C2340;
+  --cardinals-red-glow: rgba(196, 30, 58, 0.25);
+  --gold: #D4A853;
+  --gold-glow: rgba(212, 168, 83, 0.2);
   --accent: #C41E3A;
   --accent-glow: rgba(196, 30, 58, 0.15);
-  --text-primary: #1a1a2e;
-  --text-secondary: #555568;
-  --text-muted: #8a8a9a;
-  --border: rgba(0, 0, 0, 0.1);
-  --player-padding: 1.5rem;
+  --text-primary: #f0ece4;
+  --text-secondary: rgba(240, 236, 228, 0.6);
+  --text-muted: rgba(240, 236, 228, 0.3);
+  --border: rgba(255, 255, 255, 0.08);
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 3.5rem;
+  --player-padding: var(--space-md);
+  --content-width: 520px;
+  --content-inset: 90%;
 }
 
 html {
@@ -25,7 +35,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
@@ -33,14 +43,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+::selection {
+  background: rgba(196, 30, 58, 0.4);
+  color: #fff;
+}
+
 @media (min-width: 768px) {
   :root {
-    --player-padding: 2rem;
+    --player-padding: var(--space-lg);
   }
 }
 
 @media (max-width: 360px) {
   :root {
+    --space-md: 1.25rem;
     --player-padding: 1.25rem;
   }
 }

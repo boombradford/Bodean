@@ -9,5 +9,56 @@
 
 .element {
   position: absolute;
-  color: var(--cardinals-red);
+  filter: brightness(0.7);
+}
+
+/* ── Arch Silhouette ── */
+.archWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+  width: min(85vw, 520px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.archSvg {
+  width: 100%;
+  height: auto;
+  color: rgba(255, 255, 255, 0.025);
+}
+
+/* ── Particles ── */
+.particleField {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 50%;
+  animation: particle-rise var(--particle-duration) var(--particle-delay) infinite;
+  will-change: transform;
+}
+
+@keyframes particle-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--particle-opacity);
+  }
+  85% {
+    opacity: var(--particle-opacity);
+  }
+  100% {
+    transform: translateY(-105vh) translateX(var(--particle-drift));
+    opacity: 0;
+  }
 }

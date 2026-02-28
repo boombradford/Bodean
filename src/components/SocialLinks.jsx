@@ -47,19 +47,19 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.6,
+      staggerChildren: 0.06,
+      delayChildren: 1.5,
     },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.8 },
+  hidden: { opacity: 0, y: 16, scale: 0.85 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { type: 'spring', stiffness: 300, damping: 20 },
+    transition: { type: 'spring', stiffness: 260, damping: 18 },
   },
 }
 
@@ -86,6 +86,7 @@ export function SocialLinks() {
             y: -4,
           }}
           whileTap={{ scale: 0.9 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 15 }}
         >
           <Icon size={18} />
         </motion.a>

@@ -1,32 +1,32 @@
 import { motion } from 'framer-motion'
-import { GatewayArch } from './StlElements'
+import { CardinalsSTL } from './StlElements'
 import styles from './Footer.module.css'
 
 export function Footer() {
   return (
     <motion.footer
       className={styles.footer}
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.7 }}
+      transition={{ type: 'spring', stiffness: 120, damping: 20, delay: 1.6 }}
     >
       <div className={styles.footerInner}>
         <motion.div
-          className={styles.archIcon}
+          className={styles.logoIcon}
           animate={{ y: [0, -3, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <GatewayArch size={20} />
+          <CardinalsSTL size={22} style={{ opacity: 0.35 }} />
         </motion.div>
         <div className={styles.footerText}>
-          <span className={styles.red}>314</span> &mdash; Saint Louis Made
+          Happy <span className={styles.red}>314</span> Day, STL
         </div>
         <motion.div
-          className={styles.archIcon}
+          className={styles.logoIcon}
           animate={{ y: [0, -3, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
         >
-          <GatewayArch size={20} />
+          <CardinalsSTL size={22} style={{ opacity: 0.35 }} />
         </motion.div>
       </div>
       <p className={styles.copyright}>

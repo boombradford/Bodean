@@ -2,10 +2,10 @@
 .footer {
   position: relative;
   z-index: 3;
-  width: 90%;
-  max-width: 520px;
-  margin: 2.5rem auto 0;
-  padding: 1.5rem 0;
+  width: var(--content-inset);
+  max-width: var(--content-width);
+  margin: var(--space-xl) auto 0;
+  padding: var(--space-md) 0;
   border-top: 1px solid var(--border);
   text-align: center;
 }
@@ -17,26 +17,28 @@
   gap: 0.75rem;
 }
 
-.archIcon {
-  opacity: 0.4;
-  color: var(--cardinals-red);
+.logoIcon {
+  display: flex;
+  align-items: center;
 }
 
 .footerText {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.35em;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
   color: var(--text-muted);
   text-transform: uppercase;
 }
 
 .red {
   color: var(--cardinals-red);
+  font-weight: 600;
 }
 
 .copyright {
   font-size: 0.65rem;
   color: var(--text-muted);
   letter-spacing: 0.05em;
-  margin-top: 0.5rem;
+  margin-top: var(--space-xs);
 }
