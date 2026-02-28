@@ -1,43 +1,27 @@
 import { motion } from 'framer-motion'
+import styles from './ArtistHeader.module.css'
 
 export function StlBadge() {
   return (
     <motion.div
+      className={styles.badge}
       initial={{ opacity: 0, y: -15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-      style={{
-        position: 'relative',
-        zIndex: 2,
-        marginTop: 'clamp(1.5rem, 4vw, 3rem)',
-        textAlign: 'center',
-      }}
     >
-      <div
-        style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
-          letterSpacing: '0.5em',
-          textTransform: 'uppercase',
-          color: 'var(--cardinals-red)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '1rem',
-        }}
-      >
+      <div className={styles.badgeText}>
         <motion.span
+          className={styles.badgeLine}
           initial={{ width: 0 }}
           animate={{ width: 30 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          style={{ height: 1, background: 'var(--cardinals-red)', opacity: 0.5, display: 'block' }}
         />
         STL Made
         <motion.span
+          className={styles.badgeLine}
           initial={{ width: 0 }}
           animate={{ width: 30 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          style={{ height: 1, background: 'var(--cardinals-red)', opacity: 0.5, display: 'block' }}
         />
       </div>
     </motion.div>
@@ -49,32 +33,16 @@ export function ArtistHeader() {
 
   return (
     <motion.header
+      className={styles.header}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      style={{
-        position: 'relative',
-        zIndex: 2,
-        textAlign: 'center',
-        marginTop: '0.5rem',
-      }}
     >
-      <h1
-        style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: 'clamp(3.5rem, 14vw, 7rem)',
-          letterSpacing: '0.12em',
-          lineHeight: 0.9,
-          color: 'var(--text-primary)',
-          textTransform: 'uppercase',
-          display: 'flex',
-          justifyContent: 'center',
-          overflow: 'hidden',
-        }}
-      >
+      <h1 className={styles.name}>
         {letters.map((letter, i) => (
           <motion.span
             key={i}
+            className={styles.letter}
             initial={{ y: 80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
@@ -82,24 +50,17 @@ export function ArtistHeader() {
               delay: 0.25 + i * 0.05,
               ease: [0.16, 1, 0.3, 1],
             }}
-            style={{ display: 'inline-block', whiteSpace: letter === ' ' ? 'pre' : 'normal' }}
+            style={letter === ' ' ? { whiteSpace: 'pre' } : undefined}
           >
             {letter}
           </motion.span>
         ))}
       </h1>
       <motion.p
+        className={styles.subtitle}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        style={{
-          fontSize: '0.75rem',
-          fontWeight: 300,
-          letterSpacing: '0.4em',
-          textTransform: 'uppercase',
-          color: 'var(--text-secondary)',
-          marginTop: '0.5rem',
-        }}
       >
         Saint Louis, Missouri
       </motion.p>

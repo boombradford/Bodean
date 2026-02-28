@@ -1,0 +1,209 @@
+/* ── Music Player ── */
+.playerSection {
+  position: relative;
+  z-index: 3;
+  width: 90%;
+  max-width: 520px;
+  margin: clamp(1.5rem, 3vw, 2rem) auto 0;
+}
+
+.playerCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: var(--player-padding);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* ── Track Info ── */
+.trackInfo {
+  text-align: center;
+  padding: 0 var(--player-padding);
+  margin-bottom: var(--player-padding);
+}
+
+.trackTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+
+.trackArtist {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-top: 0.15rem;
+}
+
+/* ── Equalizer ── */
+.equalizer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  height: 28px;
+  margin-bottom: var(--player-padding);
+  padding: 0 var(--player-padding);
+}
+
+.eqBar {
+  width: 3px;
+  border-radius: 1.5px;
+  background: var(--cardinals-red);
+  transform-origin: bottom;
+}
+
+/* ── Progress ── */
+.progressGroup {
+  padding: 0 var(--player-padding);
+  margin-bottom: var(--player-padding);
+}
+
+.progressContainer {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: height 0.15s ease;
+}
+
+.progressContainer:hover {
+  height: 6px;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--cardinals-red);
+  border-radius: 2px;
+  position: relative;
+  transition: width 0.1s linear;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 10px;
+  height: 10px;
+  background: var(--cardinals-red);
+  border-radius: 50%;
+  transition: transform 0.15s ease;
+}
+
+.progressContainer:hover .progressFill::after {
+  transform: translateY(-50%) scale(1);
+}
+
+.timeDisplay {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 1.5rem);
+  padding: 0 var(--player-padding);
+}
+
+.btnControl {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnPlay {
+  width: 56px;
+  height: 56px;
+  background: var(--cardinals-red);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px var(--cardinals-red-glow);
+  padding: 0.5rem;
+}
+
+.iconWrap {
+  display: flex;
+}
+
+/* ── Volume ── */
+.volumeGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: var(--player-padding) var(--player-padding) 0;
+}
+
+.volumeIcon {
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.volumeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.volumeSlider::-webkit-slider-thumb:hover {
+  background: var(--text-primary);
+}
+
+.volumeSlider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--text-secondary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 360px) {
+  .controls {
+    gap: 1rem;
+  }
+
+  .btnPlay {
+    width: 50px;
+    height: 50px;
+  }
+}

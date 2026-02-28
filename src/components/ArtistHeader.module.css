@@ -1,0 +1,59 @@
+/* ── STL Badge ── */
+.badge {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.badgeText {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--cardinals-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.badgeLine {
+  height: 1px;
+  background: var(--cardinals-red);
+  opacity: 0.5;
+  display: block;
+}
+
+/* ── Artist Header ── */
+.header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 14vw, 7rem);
+  letter-spacing: 0.12em;
+  line-height: 0.9;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}

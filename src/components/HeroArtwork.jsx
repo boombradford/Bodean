@@ -1,20 +1,22 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import styles from './HeroArtwork.module.css'
+
+const BLUR_PLACEHOLDER =
+  'data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwBACdASogACAAPzmSxFevKqgjqAqp4CcJaQABARuXiwANclcGG7jWstPQedAAAPb7tmsfqXhL0tANRLUq0Yrz12zdm4r9Zfxp5fZfsPj840KwNSHpEmiOEjZWMx01Nb19ouhebbFYAAAA'
 
 export function HeroArtwork({ isPlaying }) {
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <motion.section
+      className={styles.artworkSection}
       initial={{ opacity: 0, scale: 0.92 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        position: 'relative',
-        zIndex: 2,
-        width: '90%',
-        maxWidth: 520,
-        margin: 'clamp(1.5rem, 4vw, 2.5rem) auto 0',
-      }}
     >
       <motion.div
+        className={styles.artworkFrame}
         animate={
           isPlaying
             ? {
@@ -29,28 +31,42 @@ export function HeroArtwork({ isPlaying }) {
                   '0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05), 0 0 120px rgba(196,30,58,0.35)',
               }
         }
-        transition={isPlaying ? { duration: 3, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.4 }}
-        style={{
-          position: 'relative',
-          width: '100%',
-          aspectRatio: '1 / 1',
-          borderRadius: 16,
-          overflow: 'hidden',
-        }}
+        transition={
+          isPlaying
+            ? { duration: 3, repeat: Infinity, ease: 'easeInOut' }
+            : { duration: 0.4 }
+        }
         whileHover={{ scale: 1.02 }}
       >
-        <motion.img
-          src="/cover.png"
-          alt="Bo Dean — Album Cover"
-          animate={isPlaying ? { filter: ['brightness(1)', 'brightness(1.08)', 'brightness(1)'] } : { filter: 'brightness(1)' }}
-          transition={isPlaying ? { duration: 3, repeat: Infinity, ease: 'easeInOut' } : {}}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
+        {/* Blur placeholder */}
+        <img
+          src={BLUR_PLACEHOLDER}
+          alt=""
+          aria-hidden="true"
+          className={`${styles.placeholder} ${loaded ? styles.placeholderHidden : ''}`}
         />
+
+        {/* Main image with WebP + PNG fallback */}
+        <picture>
+          <source srcSet="/cover.webp" type="image/webp" />
+          <motion.img
+            src="/cover-opt.png"
+            alt="Bo Dean — Album Cover"
+            className={styles.coverImage}
+            loading="lazy"
+            onLoad={() => setLoaded(true)}
+            animate={
+              isPlaying
+                ? { filter: ['brightness(1)', 'brightness(1.08)', 'brightness(1)'] }
+                : { filter: 'brightness(1)' }
+            }
+            transition={
+              isPlaying
+                ? { duration: 3, repeat: Infinity, ease: 'easeInOut' }
+                : {}
+            }
+          />
+        </picture>
       </motion.div>
     </motion.section>
   )

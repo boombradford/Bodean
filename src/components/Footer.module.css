@@ -1,0 +1,42 @@
+/* ── Footer ── */
+.footer {
+  position: relative;
+  z-index: 3;
+  width: 90%;
+  max-width: 520px;
+  margin: 2.5rem auto 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.archIcon {
+  opacity: 0.4;
+  color: var(--cardinals-red);
+}
+
+.footerText {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.red {
+  color: var(--cardinals-red);
+}
+
+.copyright {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}

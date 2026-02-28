@@ -1,0 +1,56 @@
+/* ── Hero Layout ── */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.bgGlow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    var(--cardinals-red-glow) 0%,
+    rgba(196, 30, 58, 0.08) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bottomFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.watermark {
+  position: absolute;
+  bottom: -5%;
+  right: -3%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 25vw, 14rem);
+  color: rgba(196, 30, 58, 0.04);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.05em;
+}
+
+.bottomSpacer {
+  height: 3rem;
+}

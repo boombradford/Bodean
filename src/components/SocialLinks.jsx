@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Instagram, Music, Headphones } from 'lucide-react'
+import { Instagram } from 'lucide-react'
+import styles from './SocialLinks.module.css'
 
 function XIcon({ size = 18 }) {
   return (
@@ -65,19 +66,10 @@ const itemVariants = {
 export function SocialLinks() {
   return (
     <motion.nav
+      className={styles.nav}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      style={{
-        position: 'relative',
-        zIndex: 3,
-        width: '90%',
-        maxWidth: 520,
-        margin: '2rem auto 0',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '1rem',
-      }}
     >
       {socials.map(({ label, icon: Icon, href }) => (
         <motion.a
@@ -85,6 +77,7 @@ export function SocialLinks() {
           href={href}
           title={label}
           aria-label={label}
+          className={styles.link}
           variants={itemVariants}
           whileHover={{
             scale: 1.15,
@@ -93,17 +86,6 @@ export function SocialLinks() {
             y: -4,
           }}
           whileTap={{ scale: 0.9 }}
-          style={{
-            width: 44,
-            height: 44,
-            borderRadius: '50%',
-            border: '1px solid var(--border)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--text-secondary)',
-            textDecoration: 'none',
-          }}
         >
           <Icon size={18} />
         </motion.a>

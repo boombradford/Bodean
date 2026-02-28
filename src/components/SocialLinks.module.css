@@ -1,0 +1,23 @@
+/* ── Social Links ── */
+.nav {
+  position: relative;
+  z-index: 3;
+  width: 90%;
+  max-width: 520px;
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
