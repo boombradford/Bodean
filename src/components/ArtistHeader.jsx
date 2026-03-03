@@ -16,7 +16,7 @@ export function CelebrationBadge() {
       transition={{ type: 'spring', stiffness: 150, damping: 18, delay: 0.1 }}
     >
       <span className={styles.badgeDot} />
-      <span className={styles.badgeLabel}>3/14 Day</span>
+      <span className={styles.badgeLabel}>Happy 314 Day</span>
       <span className={styles.badgeDot} />
     </motion.div>
   )
@@ -74,8 +74,6 @@ export function Hero314() {
 }
 
 export function ArtistHeader() {
-  const letters = 'Bo Dean'.split('')
-
   return (
     <motion.header
       className={styles.header}
@@ -83,32 +81,13 @@ export function ArtistHeader() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, delay: 0.9 }}
     >
-      <h2 className={styles.name}>
-        {letters.map((letter, i) => (
-          <motion.span
-            key={i}
-            className={styles.letter}
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 160,
-              damping: 14,
-              delay: 0.95 + i * 0.04,
-            }}
-            style={letter === ' ' ? { whiteSpace: 'pre' } : undefined}
-          >
-            {letter}
-          </motion.span>
-        ))}
-      </h2>
       <motion.p
         className={styles.subtitle}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 18, delay: 1.2 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 18, delay: 1 }}
       >
-        Saint Louis, Missouri
+        Bo Dean Presents:
       </motion.p>
     </motion.header>
   )
