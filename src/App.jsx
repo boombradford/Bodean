@@ -36,6 +36,7 @@ function App() {
         <CelebrationBadge />
         <Hero314 />
         <ArtistHeader />
+        <HeroArtwork isPlaying={isPlaying} />
         <MusicPlayer
           isPlaying={isPlaying}
           currentTime={currentTime}
@@ -48,7 +49,6 @@ function App() {
           onVolumeChange={setVolume}
           formatTime={formatTime}
         />
-        <HeroArtwork isPlaying={isPlaying} />
         <SocialLinks />
         <Footer />
 
