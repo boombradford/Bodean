@@ -3,6 +3,7 @@ import { CelebrationBadge, Hero314, ArtistHeader } from './components/ArtistHead
 import { HeroArtwork } from './components/HeroArtwork'
 import { MusicPlayer } from './components/MusicPlayer'
 import { SocialLinks } from './components/SocialLinks'
+import { UpcomingAlbum } from './components/UpcomingAlbum'
 import { Footer } from './components/Footer'
 import { StlBackground, CityParticles, ArchSilhouette } from './components/StlElements'
 import styles from './App.module.css'
@@ -49,6 +50,7 @@ function App() {
           onVolumeChange={setVolume}
           formatTime={formatTime}
         />
+        <UpcomingAlbum />
         <SocialLinks />
         <Footer />
 
